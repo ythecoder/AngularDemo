@@ -1,0 +1,13 @@
+<nav>
+  <ul class="nav-ul">
+    <li><a routerLink="/">Home</a></li>
+    <li><a routerLink="/about">About</a></li>
+    <li><a routerLink="/contact">Contact</a></li>
+    @if(isLoggedIn){
+    <li><a href="#">Ram</a></li>
+    <li><a (click)="logOut()" href="#">Log Out</a></li>
+    } @else {
+    <li><a (click)="loggedIn()" href="#">Log In</a></li>
+    }
+  </ul>
+</nav>

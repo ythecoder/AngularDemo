@@ -1,0 +1,14 @@
+
+.nav-ul{
+    display:flex;
+    gap:24px;
+    list-style: none;
+    background-color: purple;
+    color:white;
+    padding:16px;
+    justify-content: flex-end;
+    a{
+        text-decoration: none;
+        color:white;
+    }
+}

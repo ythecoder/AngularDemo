@@ -1,0 +1,38 @@
+
+.newsfeed{
+    display:flex;
+    gap:1.2rem;
+    border-radius: 1.2rem;
+    padding:1.2rem;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+.newsfeed-info{
+    display:flex;
+    flex-direction: column;
+    gap:0.6rem;
+}
+.newsfeed-img {
+    width:50px;
+    height:50px;
+    border-radius:50%;
+} 
+
+.active{
+    color:white;
+    background-color: green;
+}
+
+.disabled{
+    color:black;
+    background-color: grey;
+}
+
+.post-form{
+    display:flex;
+    flex-direction: column;
+    gap:1.2rem;
+}
+
+.post-btn{
+    width:100px;
+}

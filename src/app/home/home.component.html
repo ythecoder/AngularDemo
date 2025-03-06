@@ -1,0 +1,29 @@
+<main>
+  <app-parent></app-parent>
+
+  <div class="post-form">
+    <textarea
+      class="form-control"
+      placeholder="What's on your mind?"
+      #post
+    ></textarea>
+    <button (click)="postNewsfeed(post)" class="btn btn-primary post-btn">
+      Post
+    </button>
+  </div>
+  @for(item of newsfeeds;track item){
+  <div class="newsfeed">
+    <img class="newsfeed-img" [src]="item.profilePicture" />
+    <div class="newsfeed-info">
+      <p>{{ item.content }}</p>
+      <p>{{ item.postedOn }}</p>
+    </div>
+  </div>
+  }
+  <p>isActive: {{ isActive }}</p>
+  <p [ngClass]="{ active: isActive, disabled: !isActive }">Styled Text</p>
+  <p [ngStyle]="{ color: isActive ? 'green' : 'red' }">Dynamic Color</p>
+  <button (click)="toggleIsActive()">Change</button>
+
+  <br />
+</main>
