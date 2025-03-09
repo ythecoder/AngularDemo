@@ -72,5 +72,6 @@ export class ContactComponent {
 
   onSubmit(contactForm: any) {
     console.log(contactForm.value);
+    alert('Form submitted successfully');
   }
 }

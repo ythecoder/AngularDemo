@@ -1,0 +1,16 @@
+h2 {
+    margin-left: 1.2rem;
+}
+.register-form{
+    display:flex;
+    flex-direction: column;
+    gap:1.2rem;
+    padding: 1.2rem;;
+}
+
+.register-btn{
+    color:#fff;
+    background-color: purple;
+    margin-right:auto;
+    padding: 0.6rem;
+}

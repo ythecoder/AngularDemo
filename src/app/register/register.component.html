@@ -1,0 +1,120 @@
+<h2>Register</h2>
+
+<form [formGroup]="profileForm" (ngSubmit)="submitForm()" class="register-form">
+  <!-- First Name -->
+  <div>
+    <label>First Name:</label>
+    <input type="text" formControlName="firstName" />
+    <div
+      *ngIf="
+        profileForm.controls['firstName'].invalid &&
+        profileForm.controls['firstName'].touched
+      "
+    >
+      <span *ngIf="profileForm.controls['firstName'].errors?.['required']"
+        >First Name is required.</span
+      >
+      <span *ngIf="profileForm.controls['firstName'].errors?.['minlength']"
+        >First Name must be at least 2 characters.</span
+      >
+    </div>
+  </div>
+
+  <!-- Last Name -->
+  <div>
+    <label>Last Name:</label>
+    <input type="text" formControlName="lastName" />
+    <div
+      *ngIf="
+        profileForm.controls['lastName'].invalid &&
+        profileForm.controls['lastName'].touched
+      "
+    >
+      <span *ngIf="profileForm.controls['lastName'].errors?.['required']"
+        >Last Name is required.</span
+      >
+    </div>
+  </div>
+
+  <!-- Email -->
+  <div>
+    <label>Email:</label>
+    <input type="email" formControlName="email" />
+    <div
+      *ngIf="
+        profileForm.controls['email'].invalid &&
+        profileForm.controls['email'].touched
+      "
+    >
+      <span *ngIf="profileForm.controls['email'].errors?.['required']"
+        >Email is required.</span
+      >
+      <span *ngIf="profileForm.controls['email'].errors?.['email']"
+        >Please enter a valid email.</span
+      >
+    </div>
+  </div>
+
+  <!-- Age -->
+  <div>
+    <label>Age:</label>
+    <input type="number" formControlName="age" />
+    <div
+      *ngIf="
+        profileForm.controls['age'].invalid &&
+        profileForm.controls['age'].touched
+      "
+    >
+      <span *ngIf="profileForm.controls['age'].errors?.['required']"
+        >Age is required.</span
+      >
+      <span *ngIf="profileForm.controls['age'].errors?.['min']"
+        >Age must be at least 18 years old.</span
+      >
+    </div>
+  </div>
+
+  <!-- Password -->
+  <div>
+    <label>Password:</label>
+    <input type="password" formControlName="password" />
+    <div
+      *ngIf="
+        profileForm.controls['password'].invalid &&
+        profileForm.controls['password'].touched
+      "
+    >
+      <span *ngIf="profileForm.controls['password'].errors?.['required']"
+        >Password is required.</span
+      >
+      <span *ngIf="profileForm.controls['password'].errors?.['minlength']"
+        >Password must be at least 6 characters.</span
+      >
+    </div>
+  </div>
+
+  <!-- Confirm Password -->
+  <div>
+    <label>Confirm Password:</label>
+    <input type="password" formControlName="confirmPassword" />
+    <div
+      *ngIf="
+        profileForm.controls['confirmPassword'].invalid &&
+        profileForm.controls['confirmPassword'].touched
+      "
+    >
+      <span *ngIf="profileForm.controls['confirmPassword'].errors?.['required']"
+        >Confirm Password is required.</span
+      >
+    </div>
+    <!-- Password Mismatch Error -->
+    <div *ngIf="profileForm.errors?.['mismatch']">
+      <span style="color: red">Passwords do not match.</span>
+    </div>
+  </div>
+
+  <!-- Submit Button -->
+  <button type="submit" [disabled]="profileForm.invalid" class="register-btn">
+    Register
+  </button>
+</form>
