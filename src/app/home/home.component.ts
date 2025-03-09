@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { ParentComponent } from '../parent/parent.component';
 import { Newsfeed } from './newsfeed.interface';
+import { NewsfeedService } from './newsfeed.service';
 
 @Component({
   selector: 'app-home',
@@ -11,30 +12,13 @@ import { Newsfeed } from './newsfeed.interface';
 })
 export class HomeComponent {
   isActive: boolean = true;
+  newsfeeds: Newsfeed[] = [];
 
-  newsfeeds: Newsfeed[] = [
-    {
-      username: 'hari',
-      profilePicture: '/images/img1.png',
-      postedOn: new Date('2025-02-20 7:57 AM'),
-      content:
-        'I’m happy to share that I’m starting a new position as Software Engineer at Infinite',
-    },
-    {
-      username: 'shyam',
-      profilePicture: '/images/img2.png',
-      postedOn: new Date('2025-02-21 6:30 AM'),
-      content:
-        'I’m happy to share that I’m starting a new position as Associate Team Lead at InfoDevelopers Pvt. Ltd.!',
-    },
-    {
-      username: 'madan',
-      profilePicture: '/images/img3.png',
-      postedOn: new Date('2025-02-22 5:30 AM'),
-      content:
-        'Here are some essential software architectural patterns that are crucial for...',
-    },
-  ];
+  constructor(private newsfeedService: NewsfeedService) {}
+
+  ngOnInit() {
+    this.newsfeeds = this.newsfeedService.newsfeeds;
+  }
 
   toggleIsActive() {
     this.isActive = !this.isActive;
@@ -42,14 +26,28 @@ export class HomeComponent {
 
   postNewsfeed(post: HTMLTextAreaElement) {
     const postText = post.value.trim();
+    const newsfeedsCount = this.newsfeeds.length;
     if (postText) {
       this.newsfeeds.unshift({
+        id: newsfeedsCount + 1,
         username: 'testuser',
         profilePicture: '/images/img3.png',
         postedOn: new Date('2025-02-22 5:30 AM'),
         content: postText,
+        isLiked: false,
+        likesCount: 0,
+        comments: [],
       });
       post.value = '';
     }
+  }
+
+  toggleLike(postId: number) {
+    this.newsfeedService.toggleLike(postId);
+  }
+
+  addComment(postId: number, commentText: string) {
+    if (!commentText.trim()) return;
+    this.newsfeedService.addComment(postId, commentText);
   }
 }

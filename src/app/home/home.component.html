@@ -17,6 +17,27 @@
     <div class="newsfeed-info">
       <p>{{ item.content }}</p>
       <p>{{ item.postedOn }}</p>
+      <p>
+        <button (click)="toggleLike(item.id)">
+          {{ item.isLiked ? "Unlike" : "Like" }} ({{ item.likesCount }})
+        </button>
+      </p>
+    </div>
+    <div>
+      <input #commentInput type="text" placeholder="Add a comment..." />
+      <button
+        (click)="
+          addComment(item.id, commentInput.value); commentInput.value = ''
+        "
+      >
+        Comment
+      </button>
+    </div>
+
+    <div class="comments">
+      <p *ngFor="let comment of item.comments">
+        {{ comment.text }} - {{ comment.createdAt | date : "short" }}
+      </p>
     </div>
   </div>
   }

@@ -5,13 +5,13 @@
     <p *ngSwitchDefault>Welcome, Viewer!</p>
   </div>
 
-  @switch (userRole) { @case (role.Admin) {
+  <!-- @switch (userRole) { @case (role.Admin) {
   <p>Welcome, Admin!</p>
   } @case (role.Editor) {
   <p>Welcome, Editor!</p>
   } @default {
   <p>Welcome, Viewer!</p>
-  } }
+  } } -->
 
   <p>contact works!</p>
   <!-- <p>{{ contactInfo }}</p> -->
@@ -19,4 +19,48 @@
   <p>{{ contactInfo.name }}</p>
   <p>{{ contactInfo.phone }}</p>
   <p>{{ contactInfo.address }}</p>
+
+  <!-- FORMS -->
+  <!-- Template driven form -->
+  <p>Template Driven Form</p>
+  <form #singUpForm="ngForm" (ngSubmit)="onSubmit(singUpForm)">
+    <div>
+      <label for="firstname">First Name</label>
+      <input type="text" name="firstname" ngModel />
+    </div>
+
+    <div>
+      <label for="lastname">Last Name</label>
+      <input type="text" name="lastname" ngModel />
+    </div>
+
+    <div>
+      <label for="email">Email </label>
+      <input type="text" id="email" name="email" ngModel />
+    </div>
+
+    <div>
+      <label for="gender">Geneder</label>
+      <input type="radio" value="male" name="gender" ngModel /> Male
+      <input type="radio" value="female" name="gender" ngModel /> Female
+    </div>
+
+    <div>
+      <label for="isMarried">Married</label>
+      <input type="checkbox" name="isMarried" ngModel />
+    </div>
+
+    <div>
+      Country
+      <select name="country" ngModel>
+        <option [ngValue]="c.id" *ngFor="let c of countryList">
+          {{ c.name }}
+        </option>
+      </select>
+    </div>
+
+    <div>
+      <button type="submit">Submit</button>
+    </div>
+  </form>
 </main>

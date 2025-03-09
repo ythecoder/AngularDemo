@@ -4,10 +4,12 @@ import { Contact } from './contact';
 import { Role } from './role.enum';
 import { CommonModule } from '@angular/common';
 import { IContact } from './icontact.interface';
+import { FormsModule } from '@angular/forms';
+import { country } from './country.interface';
 
 @Component({
   selector: 'app-contact',
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.css',
 })
@@ -16,6 +18,14 @@ export class ContactComponent {
   userRole: Role | undefined;
   contactInfo!: IContact;
   // contact!: ContactInterface;
+
+  title = 'Template driven forms';
+
+  countryList: country[] = [
+    { id: '1', name: 'Pakistan' },
+    { id: '2', name: 'UAE' },
+    { id: '3', name: 'USA' },
+  ];
 
   constructor(private contactService: ContactService) {}
 
@@ -58,5 +68,9 @@ export class ContactComponent {
 
   ngOnDestroy() {
     console.log('Contact Component destroyed!');
+  }
+
+  onSubmit(contactForm: any) {
+    console.log(contactForm.value);
   }
 }
