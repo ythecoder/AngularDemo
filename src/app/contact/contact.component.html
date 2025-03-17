@@ -23,111 +23,205 @@
   <!-- FORMS -->
   <!-- Template driven form -->
   <p>Template Driven Form</p>
-  <form #singUpForm="ngForm" (ngSubmit)="onSubmit(singUpForm)">
+  <form
+    class="contact-form"
+    #contactForm="ngForm"
+    (ngSubmit)="onSubmit(contactForm)"
+  >
     <!-- First Name -->
+    <div class="full-span">
+      <h1>Contact Us</h1>
+    </div>
     <div>
       <label for="firstname">First Name</label>
-      <input type="text" name="firstname" ngModel required minlength="3" />
-      <div
-        *ngIf="
-          singUpForm.controls['firstname']?.invalid &&
-          singUpForm.controls['firstname']?.touched
-        "
-      >
-        <span *ngIf="singUpForm.controls['firstname']?.errors?.['required']"
-          >First Name is required.</span
-        >
-        <span *ngIf="singUpForm.controls['firstname']?.errors?.['minlength']"
-          >First Name must be at least 3 characters long.</span
-        >
-      </div>
     </div>
-
+    <div>
+      <input
+        type="text"
+        name="firstname"
+        id="firstname"
+        class="form-control"
+        ngModel
+        required
+        minlength="3"
+      />
+    </div>
+    <div
+      class="full-span"
+      *ngIf="
+        contactForm.controls['firstname']?.invalid &&
+        contactForm.controls['firstname']?.touched
+      "
+    >
+      <span
+        class="text-danger"
+        *ngIf="contactForm.controls['firstname']?.errors?.['required']"
+        >First Name is required.</span
+      >
+      <span
+        class="text-danger"
+        *ngIf="contactForm.controls['firstname']?.errors?.['minlength']"
+        >First Name must be at least 3 characters long.</span
+      >
+    </div>
     <!-- Last Name -->
+
     <div>
       <label for="lastname">Last Name</label>
-      <input type="text" name="lastname" ngModel required minlength="3" />
-      <div
-        *ngIf="
-          singUpForm.controls['lastname']?.invalid &&
-          singUpForm.controls['lastname']?.touched
-        "
+    </div>
+    <div>
+      <input
+        type="text"
+        id="lastname"
+        name="lastname"
+        class="form-control"
+        ngModel
+        required
+        minlength="3"
+      />
+    </div>
+    <div
+      class="full-span"
+      *ngIf="
+        contactForm.controls['lastname']?.invalid &&
+        contactForm.controls['lastname']?.touched
+      "
+    >
+      <span
+        class="text-danger"
+        *ngIf="contactForm.controls['lastname']?.errors?.['required']"
+        >Last Name is required.</span
       >
-        <span *ngIf="singUpForm.controls['lastname']?.errors?.['required']"
-          >Last Name is required.</span
-        >
-        <span *ngIf="singUpForm.controls['lastname']?.errors?.['minlength']"
-          >Last Name must be at least 3 characters long.</span
-        >
-      </div>
+      <span
+        class="text-danger"
+        *ngIf="contactForm.controls['lastname']?.errors?.['minlength']"
+        >Last Name must be at least 3 characters long.</span
+      >
     </div>
 
     <!-- Email -->
     <div>
       <label for="email">Email</label>
-      <input type="email" id="email" name="email" ngModel required email />
-      <div
-        *ngIf="
-          singUpForm.controls['email']?.invalid &&
-          singUpForm.controls['email']?.touched
-        "
-      >
-        <span *ngIf="singUpForm.controls['email']?.errors?.['required']"
-          >Email is required.</span
-        >
-        <span *ngIf="singUpForm.controls['email']?.errors?.['email']"
-          >Please enter a valid email.</span
-        >
-      </div>
     </div>
-
+    <div>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        class="form-control"
+        ngModel
+        required
+        email
+      />
+    </div>
+    <div
+      class="full-span"
+      *ngIf="
+        contactForm.controls['email']?.invalid &&
+        contactForm.controls['email']?.touched
+      "
+    >
+      <span
+        class="text-danger"
+        *ngIf="contactForm.controls['email']?.errors?.['required']"
+        >Email is required.</span
+      >
+      <span
+        class="text-danger"
+        *ngIf="contactForm.controls['email']?.errors?.['email']"
+        >Please enter a valid email.</span
+      >
+    </div>
     <!-- Gender -->
     <div>
       <label for="gender">Gender</label>
-      <input type="radio" value="male" name="gender" ngModel required /> Male
-      <input type="radio" value="female" name="gender" ngModel required />
-      Female
-      <div
-        *ngIf="
-          singUpForm.controls['gender']?.invalid &&
-          singUpForm.controls['gender']?.touched
-        "
-      >
-        <span *ngIf="singUpForm.controls['gender']?.errors?.['required']"
-          >Gender is required.</span
-        >
-      </div>
     </div>
-
+    <div>
+      <input
+        type="radio"
+        value="male"
+        name="gender"
+        class="form-check-input"
+        ngModel
+        required
+      />
+      Male
+      <input
+        type="radio"
+        value="female"
+        name="gender"
+        class="form-check-input"
+        ngModel
+        required
+      />
+      Female
+    </div>
+    <div
+      class="full-span"
+      *ngIf="
+        contactForm.controls['gender']?.invalid &&
+        contactForm.controls['gender']?.touched
+      "
+    >
+      <span
+        class="text-danger"
+        *ngIf="contactForm.controls['gender']?.errors?.['required']"
+        >Gender is required.</span
+      >
+    </div>
     <!-- Married -->
     <div>
       <label for="isMarried">Married</label>
-      <input type="checkbox" name="isMarried" ngModel [ngModel]="false" />
+    </div>
+    <div>
+      <input
+        type="checkbox"
+        name="isMarried"
+        ngModel
+        [ngModel]="false"
+        class="form-check-input"
+      />
     </div>
 
     <!-- Country -->
     <div>
       <label for="country">Country</label>
-      <select name="country" ngModel required>
-        <option [ngValue]="c.id" *ngFor="let c of countryList">
+    </div>
+    <div>
+      <select
+        name="country"
+        [(ngModel)]="selectedCountry"
+        class="form-select"
+        required
+      >
+        <option [ngValue]="null" disabled>Select Country</option>
+        <option *ngFor="let c of countryList" [ngValue]="c.id">
           {{ c.name }}
         </option>
       </select>
-      <div
-        *ngIf="
-          singUpForm.controls['country']?.invalid &&
-          singUpForm.controls['country']?.touched
-        "
-      >
-        <span *ngIf="singUpForm.controls['country']?.errors?.['required']"
-          >Country is required.</span
-        >
-      </div>
     </div>
-
+    <div
+      class="full-span"
+      *ngIf="
+        contactForm.controls['country']?.invalid &&
+        contactForm.controls['country']?.touched
+      "
+    >
+      <span
+        class="text-danger"
+        *ngIf="contactForm.controls['country']?.errors?.['required']"
+        >Country is required.</span
+      >
+    </div>
     <!-- Submit Button -->
     <div>
-      <button type="submit" [disabled]="singUpForm.invalid">Submit</button>
+      <button
+        class="btn btn-primary submit-btn"
+        type="submit"
+        [disabled]="contactForm.invalid"
+      >
+        Submit
+      </button>
     </div>
   </form>
 </main>

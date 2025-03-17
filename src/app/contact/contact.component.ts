@@ -21,7 +21,8 @@ export class ContactComponent {
 
   title = 'Template driven forms';
 
-  countryList: country[] = [
+  selectedCountry: string | null = null;
+  countryList: { id: string; name: string }[] = [
     { id: '1', name: 'Pakistan' },
     { id: '2', name: 'UAE' },
     { id: '3', name: 'USA' },

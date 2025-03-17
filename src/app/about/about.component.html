@@ -1,3 +1,7 @@
 <main>
-  <p>about works!</p>
+  <h1>Our Employees</h1>
+
+  <ul>
+    <li *ngFor="let user of users">{{ user.name }} - {{ user.email }}</li>
+  </ul>
 </main>

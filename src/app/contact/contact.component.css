@@ -8,3 +8,21 @@ div {
     font-size: 1.6rem;
     padding: 1.2rem;
 }
+
+.contact-form{
+    display:grid;
+    grid-template-columns: 1fr 3fr;
+    padding:2rem;
+    gap:0.4rem;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border-radius: 1.2rem;
+}
+
+.full-span{
+    grid-column: 1 / -1; /*span 2*/
+}
+
+.submit-btn{
+    padding:0.6rem;
+    cursor: pointer;
+}
