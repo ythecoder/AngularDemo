@@ -72,6 +72,7 @@ export class ContactComponent {
   }
 
   onSubmit(contactForm: any) {
+    console.log('selectedCountry', this.selectedCountry);
     console.log(contactForm.value);
     alert('Form submitted successfully');
   }

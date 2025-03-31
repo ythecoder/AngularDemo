@@ -1,27 +1,4 @@
 <main>
-  <div [ngSwitch]="userRole">
-    <p *ngSwitchCase="role.Admin">Welcome, Admin!</p>
-    <p *ngSwitchCase="role.Editor">Welcome, Editor!</p>
-    <p *ngSwitchDefault>Welcome, Viewer!</p>
-  </div>
-
-  <!-- @switch (userRole) { @case (role.Admin) {
-  <p>Welcome, Admin!</p>
-  } @case (role.Editor) {
-  <p>Welcome, Editor!</p>
-  } @default {
-  <p>Welcome, Viewer!</p>
-  } } -->
-
-  <p>contact works!</p>
-  <!-- <p>{{ contactInfo }}</p> -->
-
-  <p>{{ contactInfo.name }}</p>
-  <p>{{ contactInfo.phone }}</p>
-  <p>{{ contactInfo.address }}</p>
-
-  <!-- FORMS -->
-  <!-- Template driven form -->
   <p>Template Driven Form</p>
   <form
     class="contact-form"
@@ -224,4 +201,28 @@
       </button>
     </div>
   </form>
+
+  <div [ngSwitch]="userRole">
+    <p *ngSwitchCase="role.Admin">Welcome, Admin!</p>
+    <p *ngSwitchCase="role.Editor">Welcome, Editor!</p>
+    <p *ngSwitchDefault>Welcome, Viewer!</p>
+  </div>
+
+  <!-- @switch (userRole) { @case (role.Admin) {
+  <p>Welcome, Admin!</p>
+  } @case (role.Editor) {
+  <p>Welcome, Editor!</p>
+  } @default {
+  <p>Welcome, Viewer!</p>
+  } } -->
+
+  <p>contact works!</p>
+  <!-- <p>{{ contactInfo }}</p> -->
+
+  <p>{{ contactInfo.name }}</p>
+  <p>{{ contactInfo.phone }}</p>
+  <p>{{ contactInfo.address }}</p>
+
+  <!-- FORMS -->
+  <!-- Template driven form -->
 </main>
