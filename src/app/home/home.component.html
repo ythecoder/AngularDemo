@@ -13,7 +13,9 @@
   </div>
   @for(item of newsfeeds;track item){
   <div class="newsfeed">
-    <img class="newsfeed-img" [src]="item.profilePicture" />
+    <a [routerLink]="['/profile', item.id]"
+      ><img class="newsfeed-img" [src]="item.profilePicture"
+    /></a>
     <div class="newsfeed-info">
       <p>{{ item.content }}</p>
       <p>{{ item.postedOn }}</p>

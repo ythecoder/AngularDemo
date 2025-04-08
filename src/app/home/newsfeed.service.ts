@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Newsfeed } from './newsfeed.interface';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class NewsfeedService {
-  newsfeeds: Newsfeed[] = [
+  newsfeeds: BehaviorSubject<Newsfeed[]> = new BehaviorSubject<Newsfeed[]>([
     {
       id: 1,
       username: 'hari',
@@ -39,26 +40,51 @@ export class NewsfeedService {
       likesCount: 0,
       comments: [],
     },
-  ];
+  ]);
 
   constructor() {}
 
+  // toggleLike(postId: number) {
+  //   const post = this.newsfeeds.find((p) => p.id === postId);
+  //   if (post) {
+  //     post.isLiked = !post.isLiked;
+  //     post.likesCount += post.isLiked ? 1 : -1;
+  //   }
+  // }
+
   toggleLike(postId: number) {
-    const post = this.newsfeeds.find((p) => p.id === postId);
-    if (post) {
-      post.isLiked = !post.isLiked;
-      post.likesCount += post.isLiked ? 1 : -1;
-    }
+    const newsfeeds = this.newsfeeds.value.map((post) => {
+      if (post.id === postId) {
+        return {
+          ...post,
+          isLiked: !post.isLiked,
+          likesCount: post.isLiked ? post.likesCount - 1 : post.likesCount + 1,
+        };
+      }
+      return post;
+    });
+
+    this.newsfeeds.next(newsfeeds);
   }
 
   addComment(postId: number, commentText: string) {
-    const post = this.newsfeeds.find((p) => p.id === postId);
-    if (post) {
-      post.comments.push({
-        id: Date.now(),
-        text: commentText,
-        createdAt: new Date(),
-      });
-    }
+    const newsfeeds = this.newsfeeds.value.map((post) => {
+      if (post.id === postId) {
+        return {
+          ...post,
+          comments: [
+            ...post.comments,
+            {
+              id: Date.now(),
+              text: commentText,
+              createdAt: new Date(),
+            },
+          ],
+        };
+      }
+      return post;
+    });
+
+    this.newsfeeds.next(newsfeeds);
   }
 }
