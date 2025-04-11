@@ -1,0 +1,27 @@
+<div class="m-4">
+  <h2>Login</h2>
+  <form (submit)="login(); $event.preventDefault()">
+    <label>Username:</label>
+    <input
+      type="text"
+      [(ngModel)]="username"
+      name="username"
+      required
+    /><br /><br />
+
+    <label>Password:</label>
+    <input
+      type="password"
+      [(ngModel)]="password"
+      name="password"
+      required
+    /><br /><br />
+
+    <button class="btn btn-primary mx-4" type="submit">Login</button>
+  </form>
+
+  <br />
+  <button (click)="localStorageSet()">Localstorage set</button>
+  <br /><br />
+  <button (click)="removeLocalStorage()">Remove Localstorage</button>
+</div>

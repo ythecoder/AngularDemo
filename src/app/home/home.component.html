@@ -13,7 +13,7 @@
   </div>
   @for(item of newsfeeds;track item){
   <div class="newsfeed">
-    <a [routerLink]="['/profile', item.id]"
+    <a [routerLink]="['/profile', item.username]"
       ><img class="newsfeed-img" [src]="item.profilePicture"
     /></a>
     <div class="newsfeed-info">

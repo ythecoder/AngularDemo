@@ -4,7 +4,8 @@ import { ParentComponent } from '../parent/parent.component';
 import { Newsfeed } from './newsfeed.interface';
 import { NewsfeedService } from './newsfeed.service';
 import { BehaviorSubject, map, Observable, Subject } from 'rxjs';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { SessionService } from '../services/session.service';
 
 @Component({
   selector: 'app-home',
@@ -45,7 +46,14 @@ export class HomeComponent {
 
   behaviorSubject$ = new BehaviorSubject<number>(0); // Initial value: 0
 
-  constructor(private newsfeedService: NewsfeedService) {}
+  //session related
+  user: string | null = '';
+
+  constructor(
+    private router: Router,
+    private session: SessionService,
+    private newsfeedService: NewsfeedService
+  ) {}
 
   ngOnInit() {
     this.newsfeedService.newsfeeds.subscribe(
@@ -93,6 +101,12 @@ export class HomeComponent {
     ); // Will receive the last emitted value (2) immediately
 
     this.behaviorSubject$.next(3);
+
+    //session related
+    this.user = this.session.getUser();
+    if (!this.user) {
+      this.router.navigate(['/login']);
+    }
   }
 
   toggleIsActive() {
