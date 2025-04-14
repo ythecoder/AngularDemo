@@ -6,6 +6,7 @@ import { NewsfeedService } from './newsfeed.service';
 import { BehaviorSubject, map, Observable, Subject } from 'rxjs';
 import { Router, RouterModule } from '@angular/router';
 import { SessionService } from '../services/session.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-home',
@@ -52,7 +53,8 @@ export class HomeComponent {
   constructor(
     private router: Router,
     private session: SessionService,
-    private newsfeedService: NewsfeedService
+    private newsfeedService: NewsfeedService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit() {
@@ -136,8 +138,12 @@ export class HomeComponent {
   }
 
   addComment(postId: number, commentText: string) {
-    if (!commentText.trim()) return;
+    if (!commentText.trim()) {
+      this.toastr.warning('Comment add failed, comment is empty.', 'Failed');
+      return;
+    }
     this.newsfeedService.addComment(postId, commentText);
+    this.toastr.success('Comment added successfully.', 'Success');
   }
 
   //SPREAD OPERATOR--------------------------------

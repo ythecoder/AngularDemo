@@ -1,10 +1,14 @@
 
+.newsfeed-box {
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border-radius: 1.2rem;
+    padding:1.2rem;
+}
+
 .newsfeed{
     display:flex;
     gap:1.2rem;
-    border-radius: 1.2rem;
-    padding:1.2rem;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    
 }
 .newsfeed-info{
     display:flex;
@@ -35,4 +39,8 @@
 
 .post-btn{
     width:100px;
+}
+
+textarea{
+    width:100%;
 }

@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { RouterOutlet } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-root',

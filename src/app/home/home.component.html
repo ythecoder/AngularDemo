@@ -12,21 +12,23 @@
     </button>
   </div>
   @for(item of newsfeeds;track item){
-  <div class="newsfeed">
-    <a [routerLink]="['/profile', item.username]"
-      ><img class="newsfeed-img" [src]="item.profilePicture"
-    /></a>
-    <div class="newsfeed-info">
-      <p>{{ item.content }}</p>
-      <p>{{ item.postedOn }}</p>
-      <p>
-        <button (click)="toggleLike(item.id)">
-          {{ item.isLiked ? "Unlike" : "Like" }} ({{ item.likesCount }})
-        </button>
-      </p>
+  <div class="newsfeed-box">
+    <div class="newsfeed">
+      <a [routerLink]="['/profile', item.username]"
+        ><img class="newsfeed-img" [src]="item.profilePicture"
+      /></a>
+      <div class="newsfeed-info">
+        <p>{{ item.content }}</p>
+        <p>{{ item.postedOn }}</p>
+        <p>
+          <button (click)="toggleLike(item.id)">
+            {{ item.isLiked ? "Unlike" : "Like" }} ({{ item.likesCount }})
+          </button>
+        </p>
+      </div>
     </div>
     <div>
-      <input #commentInput type="text" placeholder="Add a comment..." />
+      <textarea #commentInput placeholder="Add a comment..."></textarea>
       <button
         (click)="
           addComment(item.id, commentInput.value); commentInput.value = ''
@@ -42,6 +44,7 @@
       </p>
     </div>
   </div>
+
   }
   <p>isActive: {{ isActive }}</p>
   <p [ngClass]="{ active: isActive, disabled: !isActive }">Styled Text</p>
