@@ -7,10 +7,12 @@ import { BehaviorSubject, map, Observable, Subject } from 'rxjs';
 import { Router, RouterModule } from '@angular/router';
 import { SessionService } from '../services/session.service';
 import { ToastrService } from 'ngx-toastr';
+import Swal from 'sweetalert2';
+import { HighlightDirective } from '../directives/highlight.directive';
 
 @Component({
   selector: 'app-home',
-  imports: [CommonModule, ParentComponent, RouterModule],
+  imports: [CommonModule, ParentComponent, RouterModule, HighlightDirective],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
@@ -58,6 +60,17 @@ export class HomeComponent {
   ) {}
 
   ngOnInit() {
+    Swal.fire({
+      title: 'Enter your name',
+      input: 'text',
+      inputPlaceholder: 'Full name',
+      showCancelButton: true,
+    }).then((result) => {
+      if (result.isConfirmed && result.value) {
+        console.log('User entered:', result.value);
+      }
+    });
+
     this.newsfeedService.newsfeeds.subscribe(
       (newsfeeds) => (this.newsfeeds = newsfeeds)
     );
@@ -131,6 +144,23 @@ export class HomeComponent {
       });
       post.value = '';
     }
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      // showCancelButton: true,
+      confirmButtonText: 'Delete',
+      cancelButtonText: 'Cancel',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        console.log('result', result);
+        // Do something on confirm
+        console.log('Deleted!');
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        // Do something on cancel
+        console.log('Cancelled');
+      }
+    });
   }
 
   toggleLike(postId: number) {

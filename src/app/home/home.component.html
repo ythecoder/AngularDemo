@@ -18,11 +18,13 @@
         ><img class="newsfeed-img" [src]="item.profilePicture"
       /></a>
       <div class="newsfeed-info">
-        <p>{{ item.content }}</p>
-        <p>{{ item.postedOn }}</p>
+        <p [appHighlight]="'lightblue'">{{ item.content }}</p>
+        <p>{{ item.postedOn | date }}</p>
         <p>
           <button (click)="toggleLike(item.id)">
-            {{ item.isLiked ? "Unlike" : "Like" }} ({{ item.likesCount }})
+            {{ item.isLiked ? "Unlike" : ("Like" | uppercase) }} ({{
+              item.likesCount
+            }})
           </button>
         </p>
       </div>
