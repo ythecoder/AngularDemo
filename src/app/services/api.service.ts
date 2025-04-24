@@ -18,4 +18,12 @@ export class ApiService {
     console.error('API Error:', error);
     return throwError(() => new Error('Something went wrong!'));
   }
+
+  getUserFromAPI(): Observable<any> {
+    return this.http.get('http://localhost:5000/api/users');
+  }
+
+  postUserToAPI(user: any): Observable<any> {
+    return this.http.post('http://localhost:5000/api/users', user);
+  }
 }
